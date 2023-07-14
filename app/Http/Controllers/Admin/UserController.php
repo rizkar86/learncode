@@ -75,7 +75,7 @@ class UserController extends Controller
             'postal' => $request->get('postal'),
             'about' => $request->get('about')
         ]);
-        return back()->with('succes', 'User succesfully updated');  
+        return back()->with('success', 'User succesfully updated');  
     }
    
     public function destroy( string $id)

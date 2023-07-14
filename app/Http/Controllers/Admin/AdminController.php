@@ -89,7 +89,7 @@ class AdminController extends Controller
             'postal' => $request->get('postal'),
             'about' => $request->get('about')
         ]);
-        return back()->with('succes', 'Admin succesfully updated');  
+        return back()->with('success', 'Admin successfully updated');  
     }
    
     public function destroy( string $id)
