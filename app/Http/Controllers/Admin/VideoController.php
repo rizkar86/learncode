@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\VideoCreated;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Photo;
@@ -58,6 +59,7 @@ class VideoController extends Controller
         );
         if($video)
         {
+            event(new VideoCreated());
             return redirect('/admin/videos')->with('success', 'Video created successfully.');
         }
         else{

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\QuizCreated;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Quiz;
@@ -41,6 +42,8 @@ class QuizController extends Controller
         ]);
      
         Quiz::create($request->all());
+
+        event(new QuizCreated());
         return redirect()->route('quizzes.index')->with('success','Quiz created successfully');
     }
 

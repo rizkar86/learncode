@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\TrackCreated;
 use App\Http\Controllers\Controller;
 use App\Models\Track;
 use Illuminate\Http\Request;
@@ -41,6 +42,7 @@ class TrackController extends Controller
             'name' => 'required|unique:tracks|max:255',
         ]);
         Track::create($request->all());
+        event(new TrackCreated());
         return redirect('/admin/tracks')->with('success', 'Track created successfully.');
     }
 

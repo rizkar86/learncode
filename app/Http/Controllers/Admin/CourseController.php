@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\CourseCreated;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Photo;
@@ -58,6 +59,7 @@ class CourseController extends Controller
                 'status' => $stauts,
             ]
         );
+        event(new CourseCreated());
         if($course){
             if($file = $request->file('image')){
                 $fileName = $file->getClientOriginalName();
