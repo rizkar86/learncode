@@ -26,6 +26,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\TrackController;
 use App\Http\Controllers\Auth\ResetPassword;
 use App\Http\Controllers\Auth\ChangePassword;            
@@ -43,6 +44,7 @@ Route::get('/', function () {return redirect('/admin/dashboard');})->middleware(
 	Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('admin/tracks', TrackController::class);
+	Route::resource('admin/courses', CourseController::class);
 	Route::get('/virtual-reality', [PageController::class, 'vr'])->name('virtual-reality');
 	Route::get('/rtl', [PageController::class, 'rtl'])->name('rtl');
 	Route::get('/admin/profile', [ProfileController::class, 'show'])->name('profile');

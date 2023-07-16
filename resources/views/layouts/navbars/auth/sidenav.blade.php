@@ -81,6 +81,12 @@
                 </div>
                 <a href="/admin/tracks" class="ms-2 text-uppercase text-xs font-weight-bolder opacity-6 mb-0">Tracks</a>
             </li>
+            <li class="nav-item mt-3 d-flex align-items-center">
+                <div class="ps-4">
+                    <i class="fab fa-instagram" style="color: #f4645f;"></i>
+                </div>
+                <a href="/admin/courses" class="ms-2 text-uppercase text-xs font-weight-bolder opacity-6 mb-0">Courses</a>
+            </li>
 
             <li class="nav-item mt-3 d-flex align-items-center">
                 <div class="ps-4">
