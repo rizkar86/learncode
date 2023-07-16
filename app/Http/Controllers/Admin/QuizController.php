@@ -42,8 +42,6 @@ class QuizController extends Controller
         ]);
      
         Quiz::create($request->all());
-
-        event(new QuizCreated());
         return redirect()->route('quizzes.index')->with('success','Quiz created successfully');
     }
 

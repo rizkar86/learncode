@@ -59,7 +59,6 @@ class VideoController extends Controller
         );
         if($video)
         {
-            event(new VideoCreated());
             return redirect('/admin/videos')->with('success', 'Video created successfully.');
         }
         else{

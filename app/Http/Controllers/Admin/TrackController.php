@@ -42,7 +42,6 @@ class TrackController extends Controller
             'name' => 'required|unique:tracks|max:255',
         ]);
         Track::create($request->all());
-        event(new TrackCreated());
         return redirect('/admin/tracks')->with('success', 'Track created successfully.');
     }
 
