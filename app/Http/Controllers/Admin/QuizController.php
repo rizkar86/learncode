@@ -42,15 +42,17 @@ class QuizController extends Controller
         ]);
      
         Quiz::create($request->all());
-        return redirect()->route('quizzes.index')->with('success','Quiz created successfully');
+        return back()->with('success','Quiz created successfully'  );
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Quiz $quiz)
     {
         //
+        $questions = $quiz->questions()->paginate(8);
+        return view('admin.quizzes.show', compact('quiz','questions'));
     }
 
     /**

@@ -49,7 +49,7 @@
                                                 <img src="{{asset('img/team-1.jpg')}}" class="avatar me-3" alt="image">
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm">{{$quiz->name}}</h6>
+                                                <a class="mb-0 text-sm" href="{{ route('quizzes.show', $quiz) }}">{{$quiz->name}}</a>
                                             </div>
                                         </div>
                                     </td>

@@ -60,7 +60,7 @@
                                                     <img src="{{asset('img/team-1.jpg')}}" class="avatar me-3" alt="image">
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="mb-0 text-sm">{{$track->name}}</h6>
+                                                    <a href="{{ route('tracks.show', $track) }}"><h6 class="mb-0 text-sm">{{$track->name}}</h6></a>
                                                 </div>
                                             </div>
                                         </td>

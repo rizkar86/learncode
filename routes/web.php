@@ -27,12 +27,17 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\CourseQuizController;
+use App\Http\Controllers\Admin\CourseVideoController;
+use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\QuizController;
+use App\Http\Controllers\Admin\QuizQuestionController;
 use App\Http\Controllers\Admin\TrackController;
+use App\Http\Controllers\Admin\TrackCourseController;
 use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Auth\ResetPassword;
-use App\Http\Controllers\Auth\ChangePassword;            
-            
+use App\Http\Controllers\Auth\ChangePassword;
+
 
 Route::get('/', function () {return redirect('/admin/dashboard');})->middleware('auth');
 	Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register');
@@ -46,9 +51,15 @@ Route::get('/', function () {return redirect('/admin/dashboard');})->middleware(
 	Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('admin/tracks', TrackController::class);
+	Route::resource('admin/tracks.courses', TrackCourseController::class);
 	Route::resource('admin/courses', CourseController::class);
+	Route::resource('admin/courses.videos', CourseVideoController::class);
+	Route::resource('admin/courses.quizzes', CourseQuizController::class);
 	Route::resource('admin/videos', VideoController::class);
+	
 	Route::resource('admin/quizzes', QuizController::class);
+	Route::resource('admin/quizzes.questions', QuizQuestionController::class);
+	Route::resource('admin/questions', QuestionController::class);
 	Route::get('/virtual-reality', [PageController::class, 'vr'])->name('virtual-reality');
 	Route::get('/rtl', [PageController::class, 'rtl'])->name('rtl');
 	Route::get('/admin/profile', [ProfileController::class, 'show'])->name('profile');

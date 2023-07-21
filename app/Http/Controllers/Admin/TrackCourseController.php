@@ -2,42 +2,29 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Events\CourseCreated;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Photo;
 use App\Models\Track;
 use Illuminate\Http\Request;
 
-class CourseController extends Controller
+class TrackCourseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-        $courses=Course::withCount('users')->orderByDesc('users_count')->paginate(8);
-
-        
-        return view('admin.courses.index',compact('courses'));
-        
-    }
-
-    /**
+       /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Track $track)
     {
         //
-        $tracks=Track::orderBy('id','desc')->get();
-        return view('admin.courses.create',compact('tracks'));
+        return view('admin.tracks.createCourse',compact('track'));
+      
     }
+
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request,Track $track)
     {
         $stauts = 0;
       
@@ -72,9 +59,9 @@ class CourseController extends Controller
                     ]);
                 }
             }
-            return redirect('/admin/courses')->with('success', 'Course created successfully.');
+            return redirect('/admin/tracks/'.$track->id)->with('success', 'Course created successfully.');
         }
-      
+
     }
 
     /**
@@ -83,29 +70,22 @@ class CourseController extends Controller
     public function show(string $id)
     {
         //
-        
-        $course=Course::find($id);
-        $videos = $course->videos()->paginate(8);
-        return view('admin.courses.show',compact('course','videos'));
-
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Track $track,Course $course)
     {
         //
-        $course=Course::find($id);
-        $tracks=Track::orderBy('id','desc')->get();
-        return view('admin.courses.edit',compact('course','tracks'));
-
+    
+        return view('admin.tracks.editCourse',compact('track','course'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Course $course)
+    public function update(Request $request,Track $track,Course $course)
     {
         $stauts = 0;
         $request->validate([
@@ -146,27 +126,18 @@ class CourseController extends Controller
                 }         
             }
         }
-        return redirect('/admin/courses')->with('success', 'Course updated successfully.');
+
+        return redirect('/admin/tracks/'.$track->id)->with('success', 'Course updated successfully.');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Track $track,Course $course)
     {
-    
-        $course=Course::find($id);
-
-        if($course->photo)
-        {
-           unlink(public_path('img/'.$course->photo->filename));
-
-        }
- 
-        // unlink 
-   
-        $course->photo->delete();
+        //
         $course->delete();
-        return redirect('/admin/courses')->with('success', 'Course deleted successfully.');
+        return back()->with('success', 'Course deleted successfully.');
     }
 }

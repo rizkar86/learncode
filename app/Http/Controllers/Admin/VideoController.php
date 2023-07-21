@@ -68,13 +68,15 @@ class VideoController extends Controller
    
     }
 
+
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
         //
-
+        $video=Video::find($id);
+        return view('admin.videos.show',compact('video'));
     }
 
     /**
@@ -99,9 +101,7 @@ class VideoController extends Controller
             'course_id' => 'required|integer',
             'link' => 'required|url',
         ]);
-
-      
-
+        
         $video->update(
             [
                 'title' => $request->title,
@@ -110,7 +110,7 @@ class VideoController extends Controller
             ]
         );
       
-        return redirect('/admin/videos')->with('success', 'Video updated successfully.');
+        return back()->with('success', 'Video updated successfully.');
     }
 
     /**

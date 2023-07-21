@@ -29,13 +29,11 @@
             <div class="card mb-4">
                 <div class="card-header pb-0">
                     <h6>Courses</h6>
-                    
+        
                     <a class="btn btn-primary btn-sm float-end" href="{{ route('courses.create') }}" >Add Course</a>
                      
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
-           
-                       
                         @if (count($courses) > 0)
                         <div class="row">
                             @foreach ($courses as $course)
@@ -52,7 +50,7 @@
                                     <div class="d-flex justify-content-between ">
 
                                     <a href="{{ route('courses.edit', $course->id) }}" class="btn btn-primary btn-sm me-1" >edit</a>
-                                    <a href="#" class="btn btn-info btn-sm me-1" >Show</a>
+                                    <a href="{{ route('courses.show', $course->id) }}" class="btn btn-info btn-sm me-1" >Show</a>
                                     <form action="{{ route('courses.destroy', $course->id) }}" method="post">
                                         @csrf
                                         @method('delete')

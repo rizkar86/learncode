@@ -48,9 +48,11 @@ class TrackController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Track $track)
     {
         //
+        $courses = $track->courses()->paginate(8);
+        return view('admin.tracks.show',compact('track','courses'));
     }
 
     /**

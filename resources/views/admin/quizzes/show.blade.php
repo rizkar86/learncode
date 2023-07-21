@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-@include('layouts.navbars.auth.topnav', ['title' => 'Tracks Management'])
+@include('layouts.navbars.auth.topnav', ['title' => 'Quiz Show'])
 <div class="container-fluid py-4">
     @include('layouts.header.header')
     <div class="row mt-4 mx-4">
@@ -17,40 +17,32 @@
             <div id="alert">
                 @include('components.alert')
             </div>
-            @if ($errors->any())
-            <div class="alert alert-danger text-white">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-            </div>
-             @endif
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h6>Videos</h6>
-                    
-                    <a class="btn btn-primary btn-sm float-end" href="{{ route('videos.create') }}" >Add Videos</a>
-                     
+                    <h6>Quiz : {{$quiz->name}}</h6> 
+                    <h6>Questions : {{count($questions)}}</h6> 
+                    <a class="btn btn-primary btn-sm float-end" href="{{ route('quizzes.questions.create',$quiz) }}" >Add Question</a>
+            
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
                         <table class="table align-items-center mb-0">
                             <thead>
                                 <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Course name
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Question Title</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Answers
                                     </th>
-                                    <th
-                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Create Date</th>
-                                    <th
-                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Right Answer</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Score</th>
+                                    
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($videos as $video)
+                                @foreach ($questions as $question)
                                 <tr>
                                     <td>
                                         <div class="d-flex px-3 py-1">
@@ -58,20 +50,23 @@
                                                 <img src="{{asset('img/team-1.jpg')}}" class="avatar me-3" alt="image">
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a class="mb-0 text-sm" href="/admin/videos/{{$video->id}}">{{$video->title}}</a>
+                                                <a class="mb-0 text-sm" href="{{ route('questions.show', $question) }}">{{$question->title}}</a>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="/admin/courses/{{$video->course->id}}" class="text-sm font-weight-bold mb-0">{{$video->course->title}}</p>
+                                        <p class="text-sm font-weight-bold mb-0">{{$question->answers}}</p>
                                     </td>
                                     <td class="align-middle text-center text-sm">
-                                        <p class="text-sm font-weight-bold mb-0">{{$video->created_at}}</p>
+                                        <p  class="text-sm font-weight-bold mb-0" >{{$question->right_answer}}</p>
+                                    </td>
+                                    <td class="align-middle text-center text-sm">
+                                        <p class="text-sm font-weight-bold mb-0">{{$question->score}}</p>
                                     </td>
                                     <td class="align-middle text-end">
                                         <div class="d-flex px-3 py-1 justify-content-center align-items-center">
-                                            <a class="text-sm font-weight-bold mb-0" href="{{ route('videos.edit', $video->id) }}">Edit</a>
-                                            <form action="{{ route('videos.destroy', $video->id) }}" method="post">
+                                            <a class="text-sm font-weight-bold mb-0" href="{{ route('questions.edit', $question) }}">Edit</a>
+                                            <form action="{{ route('questions.destroy', $question->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
                                                 <input type="submit" class="btn btn-link text-sm font-weight-bold mb-0 ps-2" value="Delete">
@@ -85,10 +80,9 @@
                         </table>
                     </div>
                 </div>
-            
-                  <nav aria-label="Page navigation example">
+                <nav aria-label="Page navigation example">
                     <ul class="pagination">
-                        {{ $videos->links('custom-pagination') }}
+                        {{ $questions->links('custom-pagination') }}
                     </ul>
                   </nav>
             </div>
