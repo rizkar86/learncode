@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-@include('layouts.navbars.auth.topnav', ['title' => 'Quiz Show'])
+@include('layouts.navbars.auth.topnav', ['title' => 'Quizzes Management'])
 <div class="container-fluid py-4">
     @include('layouts.header.header')
     <div class="row mt-4 mx-4">
@@ -19,9 +19,8 @@
             </div>
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h6>Quiz : {{$quiz->name}}</h6> 
-                    <h6>Questions : {{count($questions)}}</h6> 
-                    <a class="btn btn-primary btn-sm float-end" href="{{ route('quizzes.questions.create',$quiz) }}" >Add Question</a>
+                    <h6>Quizzes</h6> 
+                    <a class="btn btn-primary btn-sm float-end" href="{{ route('questions.create') }}" >Add Question</a>
             
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
@@ -29,16 +28,14 @@
                         <table class="table align-items-center mb-0">
                             <thead>
                                 <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Question Title</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Answers
-                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">The answer</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">The right answer</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Right Answer</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Score</th>
-                                    
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Action</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Quiz Name</th>
+                              
                                 </tr>
                             </thead>
                             <tbody>
@@ -50,19 +47,23 @@
                                                 <img src="{{asset('img/team-1.jpg')}}" class="avatar me-3" alt="image">
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <p class="mb-0 text-sm" >{{$question->title}}</p>
+                                                <p class="mb-0 text-sm">{{$question->title}}</p>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
                                         <p class="text-sm font-weight-bold mb-0">{{$question->answers}}</p>
                                     </td>
-                                    <td class="align-middle text-center text-sm">
-                                        <p  class="text-sm font-weight-bold mb-0" >{{$question->right_answer}}</p>
+                                    <td>
+                                        <p class="text-sm font-weight-bold mb-0">{{$question->right_answer}}</p>
                                     </td>
-                                    <td class="align-middle text-center text-sm">
+                                    <td>
                                         <p class="text-sm font-weight-bold mb-0">{{$question->score}}</p>
                                     </td>
+                                    <td class="align-middle text-center text-sm">
+                                        <a  class="text-sm font-weight-bold mb-0" href="/admin/courses/{{$question->quiz}}">{{$question->quiz->name}}</a>
+                                    </td>
+                                
                                     <td class="align-middle text-end">
                                         <div class="d-flex px-3 py-1 justify-content-center align-items-center">
                                             <a class="text-sm font-weight-bold mb-0" href="{{ route('questions.edit', $question) }}">Edit</a>

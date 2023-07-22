@@ -59,7 +59,7 @@ Route::group(['middleware' => 'auth'], function () {
 	
 	Route::resource('admin/quizzes', QuizController::class);
 	Route::resource('admin/quizzes.questions', QuizQuestionController::class);
-	Route::resource('admin/questions', QuestionController::class);
+	Route::resource('admin/questions', QuestionController::class)->except(['show']);
 	Route::get('/virtual-reality', [PageController::class, 'vr'])->name('virtual-reality');
 	Route::get('/rtl', [PageController::class, 'rtl'])->name('rtl');
 	Route::get('/admin/profile', [ProfileController::class, 'show'])->name('profile');
