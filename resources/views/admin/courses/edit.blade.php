@@ -103,7 +103,9 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
+                                    @if ($course->photo)
                                     <img src="{{asset('img/'.$course->photo->filename.'')}}" alt="image" height="159" width="319">
+                                    @endif
                                     <label class="form-label" for="customFile">Image uplaod</label>
                                     <input type="file" name="image" class="form-control" id="customFile" />
                                 </div>

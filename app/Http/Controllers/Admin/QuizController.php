@@ -87,8 +87,8 @@ class QuizController extends Controller
     {
         //
         Quiz::findOrFail($id)->delete();
+        return back()->with('success','Quiz deleted successfully'  );
 
-        return redirect()->route('quizzes.index')->with('success','Quiz deleted successfully');
 
     }
 }

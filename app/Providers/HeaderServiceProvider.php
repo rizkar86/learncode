@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Course;
 use App\Models\Quiz;
 use App\Models\Track;
+use App\Models\User;
 use App\Models\Video;
 
 use Illuminate\Support\ServiceProvider;
@@ -21,10 +22,10 @@ class HeaderServiceProvider extends ServiceProvider
         View::composer('layouts.header.header', function ($view) {
             $trackCount = Track::count();
             $courseCount = Course::count();
-            $videoCount = Video::count();
+            $usersCount = User::where('admin',0)->count();
             $quizCount = Quiz::count();
             
-            $view->with(compact('trackCount', 'courseCount', 'videoCount', 'quizCount'));
+            $view->with(compact('trackCount', 'courseCount', 'usersCount', 'quizCount'));
         });
     }
 

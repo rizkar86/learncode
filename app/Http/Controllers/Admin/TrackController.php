@@ -97,6 +97,6 @@ class TrackController extends Controller
         //
         $track = Track::findOrFail($id);
         $track->delete();
-        return redirect('/admin/tracks')->with('success', 'Track deleted successfully.');
+        return back()->with('success', 'Track deleted successfully.');
     }
 }

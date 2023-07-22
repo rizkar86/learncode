@@ -167,6 +167,6 @@ class CourseController extends Controller
    
         $course->photo->delete();
         $course->delete();
-        return redirect('/admin/courses')->with('success', 'Course deleted successfully.');
+        return back()->with('success', 'Course deleted successfully.');
     }
 }
