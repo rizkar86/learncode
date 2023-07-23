@@ -1,0 +1,33 @@
+.container-fluid{
+    padding: 0;
+    margin: 0;
+}
+.navbar{
+    background-color: #1c5996;
+    color: #fff;
+}
+.navbar a{
+    color: #fff;
+    padding: 10px;
+}
+
+.home_header{
+    background-image:  url('../../img/home_header.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    position: relative;
+   
+}
+.home_header_content{
+    position: absolute;
+    top: 41%;
+    left: 40%;
+    text-align: center;
+    color: #000000;
+}
+.home_header_content .btn{
+   background-color: #1c5996;
+   color: #fff;
+}
