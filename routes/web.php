@@ -14,9 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
 
 
 use App\Http\Controllers\Admin\HomeController;
@@ -38,7 +35,7 @@ use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Auth\ResetPassword;
 use App\Http\Controllers\Auth\ChangePassword;
 
-
+	Route::get('/', [HomeController::class, 'index'])->name('home');
 
 	Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register');
 	Route::post('/register', [RegisterController::class, 'store'])->middleware('guest')->name('register.perform');
@@ -50,6 +47,7 @@ use App\Http\Controllers\Auth\ChangePassword;
 	Route::post('/change-password', [ChangePassword::class, 'update'])->middleware('guest')->name('change.perform');
 	Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::group(['middleware' => 'auth'], function () {
+	
 	Route::resource('admin/tracks', TrackController::class);
 	Route::resource('admin/tracks.courses', TrackCourseController::class);
 	Route::resource('admin/courses', CourseController::class);
@@ -65,7 +63,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/admin/profile', [ProfileController::class, 'show'])->name('profile');
 	Route::post('/admin/profile', [ProfileController::class, 'update'])->name('profile.update');
 	Route::put('/admin/profile', [ProfileController::class, 'resetPassword'])->name('profile.resetPassword');
-	Route::get('/admin/admins', [AdminController::class, 'index'])->name('admins');
+	Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admins.dashboard');
+	Route::get('/admin/admins', [AdminController::class, 'admins'])->name('admins');
 	Route::post('/admin/admins', [AdminController::class, 'store'])->name('admins.store');
 	Route::get('/admin/admins-create', [AdminController::class, 'create'])->name('admins.create');
 	Route::get('/admin/admins/{id}/edit', [AdminController::class, 'edit'])->name('admins.edit');
@@ -82,4 +81,5 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/sign-up-static', [PageController::class, 'signup'])->name('sign-up-static'); 
 	Route::get('/{page}', [PageController::class, 'index'])->name('page');
 	Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
 });

@@ -18,7 +18,8 @@
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <link href="{{asset('assets/css/nucleo-svg.css')}}" rel="stylesheet" />
-
+    <!-- slick slider -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <!-- CSS Files -->
     <link id="pagestyle" href="{{asset('assets/css/style.css')}}" rel="stylesheet" />
 </head>
@@ -36,7 +37,7 @@
                 </form>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
               
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav ms-auto mb-2 me-5 mb-lg-0">
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                   </li>
@@ -53,7 +54,17 @@
                           <li><a class="dropdown-item" href="#">Profile</a></li>
                           <li><a class="dropdown-item" href="#">Courses</a></li>
                           <li><hr class="dropdown-divider"></li>
-                          <li><a class="dropdown-item" href="#">Logout</a></li>
+                          <li class="dropdown-item">
+                            <form role="form" method="post" action="{{ route('logout') }}" id="logout-form">
+                                @csrf
+                                <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                    class="nav-link text-white font-weight-bold px-0">
+                                    <i class="fa fa-user me-sm-1"></i>
+                                    <span class="d-sm-inline d-none">Log out</span>
+                                </a>
+                            </form>
+                        </li>
                         </ul>
                       </li>
                   @endauth
@@ -73,15 +84,17 @@
             </div>
           </nav>
     
-        @yield('home_header')
+        @yield('content')
         
         </div>
 
    <!--   Core JS Files   -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
     <script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script>
     <script src="{{asset('assets/js/plugins/perfect-scrollbar.min.js')}}"></script>
     <script src="{{asset('assets/js/plugins/smooth-scrollbar.min.js')}}"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -93,6 +106,7 @@
     </script>
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="{{asset('assets/js/main.js')}}"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 
     @stack('js');

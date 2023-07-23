@@ -1,3 +1,6 @@
+a{
+    text-decoration: none;
+}
 .container-fluid{
     padding: 0;
     margin: 0;
@@ -8,7 +11,7 @@
 }
 .navbar a{
     color: #fff;
-    padding: 10px;
+    padding: 10px 50px;
 }
 
 .home_header{
@@ -31,3 +34,89 @@
    background-color: #1c5996;
    color: #fff;
 }
+
+/*  home slider */
+.tarkikComandSlider {
+    width: 1100px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+    position: relative;
+  }
+  .tarkikComandSlider1 {
+    width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+    position: relative;
+  }
+  
+  .slick-dots {
+    position: absolute;
+    bottom: -50px;
+    display: block;
+    left: 45%;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+  }
+  .slick-dots li {
+    position: relative;
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin: 0 5px;
+    padding: 0;
+    cursor: pointer;
+  }
+  .slick-dots li button {
+    display: none;
+  }
+  .slick-dots li:before {
+    top: 1px;
+    transition: all 0.5s;
+    content: "";
+    width: 6px;
+    height: 6px;
+    background-color: #1c5996;
+    position: absolute;
+  }
+  .slick-dots li.slick-active:before {
+    top: 0;
+    width: 8px;
+    height: 8px;
+    margin-left: -2px;
+    background-color: #964848;
+  }
+  
+  .slick-prev {
+    left: 0;
+    transform: rotate(180deg);
+  }
+  
+  .slick-next {
+    right: 0;
+  }
+  
+  .slick-arrow {
+    top: 53%;
+    height: 26px;
+    width: 20px;
+    margin-top: -13px;
+    position: absolute;
+    font-size: 0;
+    cursor: pointer;
+    background-color: #1c5996;
+    border: none;
+    background-image: url(https://tarkikromanski.github.io/files/arrow-slider.png);
+    background-repeat: no-repeat;
+  }
+
+  
+ 
+/*   end home slider */
+/*  Track Famous Corses */
