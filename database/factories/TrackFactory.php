@@ -17,7 +17,7 @@ class TrackFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->word(),
+            'name' => fake()->randomElement(['Web Development', 'Data Science', 'Digital Marketing', 'Mobile App Development', 'Business and Entrepreneurship', 'Artificial Intelligence and Robotics','Graphic Design']),
             //
         ];
     }

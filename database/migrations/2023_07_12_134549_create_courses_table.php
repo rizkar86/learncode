@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title',500);
+            $table->text('description');
+            $table->string('slug',500);
             $table->integer('status')->default(0);
             $table->string('link');
             $table->unsignedBigInteger('track_id');

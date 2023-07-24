@@ -13,6 +13,14 @@ a{
     color: #fff;
     padding: 10px 50px;
 }
+.video-btn{
+  background-color: #f0f0f0f0;
+  color: #1c5996;
+}
+.video-btn:hover{
+    background-color: #1c5996;
+    color: #fff;
+}
 
 .home_header{
     background-image:  url('../../img/home_header.jpg');

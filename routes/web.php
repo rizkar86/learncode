@@ -34,8 +34,10 @@ use App\Http\Controllers\Admin\TrackCourseController;
 use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Auth\ResetPassword;
 use App\Http\Controllers\Auth\ChangePassword;
+use App\Http\Controllers\CourseController as ControllersCourseController;
 
 	Route::get('/', [HomeController::class, 'index'])->name('home');
+	Route::get('/courses/{slug}',[ControllersCourseController::class, 'index']);
 
 	Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register');
 	Route::post('/register', [RegisterController::class, 'store'])->middleware('guest')->name('register.perform');

@@ -57,6 +57,7 @@ class CourseController extends Controller
                 'track_id' => $request->track_id,
                 'link' => $request->link,
                 'status' => $stauts,
+                'slug' => strtolower(str_replace(' ','-',$request->title)),
             ]
         );
         if($course){
@@ -112,6 +113,7 @@ class CourseController extends Controller
             'title' => 'required|min:3|max:255',
             'track_id' => 'required|integer',
             'link' => 'required|url',
+            'slug' => strtolower(str_replace(' ','-',$request->title)),
         ]);
 
         if($request->has('status') and $request->status == 'on')
@@ -125,6 +127,7 @@ class CourseController extends Controller
                 'track_id' => $request->track_id,
                 'link' => $request->link,
                 'status' => $stauts,
+                
             ]
         );
         if($file = $request->file('image')){

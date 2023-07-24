@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 class Course extends Model
 {
     use HasFactory;
-    protected $fillable = [ 'title', 'status', 'track_id', 'link'];
+    protected $fillable = [ 'title', 'status', 'track_id', 'link', 'description', 'slug'];
      /**
      * Get all of the course's photo.
      */

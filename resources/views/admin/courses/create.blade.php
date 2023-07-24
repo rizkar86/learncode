@@ -84,6 +84,12 @@
                                         <input class="form-control" type="text" name="title" >
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">Description</label>
+                                        <textarea class="form-control" type="text" name="description" ></textarea>
+                                    </div>
+                                </div>
                           
                                 <div class="col-md-6">
                                     <div class="form-group">

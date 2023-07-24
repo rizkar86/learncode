@@ -37,6 +37,7 @@ class CourseVideoController extends Controller
                 'title' => $request->title,
                 'course_id' => $course->id,
                 'link' => $request->link,
+                'slug' => strtolower(str_replace(' ','-',$request->title)),
             ]
         );
         if($video)

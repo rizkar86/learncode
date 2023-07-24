@@ -9,9 +9,9 @@
 				
 					<div class="card me-2" style="width: 20rem;">
 						@if ($course->photo)
-						<img height="159" width="319" src="{{asset('img/'.$course->photo->filename.'')}}" class="card-img-top" alt="...">
+						<a href="/courses/{{$course->slug}}"><img height="159" width="319" src="{{asset('img/'.$course->photo->filename.'')}}" class="card-img-top" alt="..."></a>
 						@else
-						<img height="159" width="319" src="{{asset('img/1.jpg')}}" class="card-img-top" alt="image">
+						<a href="/courses/{{$course->slug}}"><img height="159" width="319" src="{{asset('img/1.jpg')}}" class="card-img-top" alt="image"></a>
 						@endif
 						<div class="card-body text-center">
 							<h5 class="card-title">{{$course->title}}</h5>

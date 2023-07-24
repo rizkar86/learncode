@@ -16,4 +16,9 @@ $(document).ready(function(){
    arrows:true,
    });
 
+  $('.video-btn').on('click', function() {
+      let link = $(this).attr('href');
+      $('#show-video  iframe').attr('src', link);  
+  });
+
 });
