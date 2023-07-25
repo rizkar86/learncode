@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('answers');
             $table->string('right_answer');
             $table->integer('score');
+            $table->string('type')->nullable();
             $table->unsignedBigInteger('quiz_id');
             $table->foreign('quiz_id')->references('id')->on('quizzes')->onDelete('cascade');
             $table->timestamps();

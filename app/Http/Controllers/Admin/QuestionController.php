@@ -42,6 +42,7 @@ class QuestionController extends Controller
             'answers' => 'required',
             'right_answer' => 'required|string|max:255',
             'score' => 'required|numeric',
+            'type' => 'required|in:text,checkbox',
         ]);
   
         // if answers not contain comma

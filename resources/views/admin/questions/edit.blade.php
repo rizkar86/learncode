@@ -113,6 +113,16 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">QWuestion Type</label>
+                                    
+                                        <select name='type' class="form-select" aria-label="Default select example">
+                                            <option value="checkbox"{{($question->type == "checkbox")?'selected':''}}>checkbox</option>
+                                            <option value="text"{{($question->type == "text")?'selected':''}}>text</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">Quiz</label>
                                         <select name='quiz_id' class="form-select" aria-label="Default select example">
                                             @foreach ($quizzes as $quiz)

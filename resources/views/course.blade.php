@@ -36,7 +36,7 @@
                     <!-- Button trigger modal -->
                     <!-- style hover background color -->
 
-                    <a class="p-3 fw-bold video-btn" href="{{$video->link}}"  data-bs-toggle="modal" data-bs-target="#show-video" > 
+                    <a class="p-3 fw-bold video-btn border mb-2" href="{{$video->link}}"  data-bs-toggle="modal" data-bs-target="#show-video" > 
                         <i class="fab fa-youtube me-3 text-danger "></i>{{$video->title}}
                     </a>
                     
@@ -66,9 +66,18 @@
                     @foreach ($quizzes as $quiz)
                     <!-- Button trigger modal -->
                     <!-- style hover background color -->
-
-                    <a class="p-3 fw-bold video-btn" href="#"  target="_blank"> {{$quiz->name}}
+                    @if(array_key_exists($quiz->id,$quizzesIds))
+                    <a class="p-3 fw-bold video-btn border mb-2" style="pointer-events: none;
+                    color: #6c757d;
+                    text-decoration: none;"  href="/courses/{{$course->slug}}/quizzes/{{$quiz->name}}"  target="_blank"> {{$quiz->name}} <span class="float-end"> Score : {{$quizzesIds[$quiz->id]}}</span>
                     </a>
+                    @else
+
+
+
+                    <a class="p-3 fw-bold video-btn border mb-2" href="/courses/{{$course->slug}}/quizzes/{{$quiz->name}}"  target="_blank"> {{$quiz->name}}
+                    </a>
+                    @endif
                     
                     <!-- Modal -->
                    
