@@ -1,5 +1,6 @@
 
 
+@if($user_courses->count() > 0)
 <div class="container-fluid bg-light ">
 	<div class="row">
 		<div class="col-md-12 p-5">
@@ -30,3 +31,4 @@
 		</div>
 	</div>
 </div>
+@endif

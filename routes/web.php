@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
@@ -37,9 +37,11 @@ use App\Http\Controllers\Auth\ChangePassword;
 use App\Http\Controllers\CourseController as ControllersCourseController;
 use App\Http\Controllers\QuizController as ControllersQuizController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\TrackController as ControllersTrackController;
 
 	Route::get('/', [HomeController::class, 'index'])->name('home');
 	Route::get('/search', [SearchController::class, 'index']);
+	Route::get('/tracks/{name}', [ControllersTrackController::class, 'index']);
 	Route::get('/courses/{slug}',[ControllersCourseController::class, 'index']);
 	Route::get('/courses/{slug}/quizzes/{name}',[ControllersQuizController::class, 'index']);
 	Route::post('/courses/{slug}/quizzes/{name}',[ControllersQuizController::class, 'submit']);

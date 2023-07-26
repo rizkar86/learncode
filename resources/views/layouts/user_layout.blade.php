@@ -46,7 +46,7 @@
                   </li>
                   @auth
               
-                    <li class="nav-item dropdown">
+               {{--      <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                           Dropdown
                         </a>
@@ -66,6 +66,13 @@
                             </form>
                         </li>
                         </ul>
+                      </li> --}}
+                      <li class="nav-item">
+                        <form role="form" method="post" action="{{ route('logout') }}" id="logout-form">
+                          @csrf
+                        
+                          <button type="submit" class="nav-link">Logout</button>
+                      </form>
                       </li>
                   @endauth
                     @guest

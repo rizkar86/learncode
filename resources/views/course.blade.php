@@ -24,7 +24,7 @@
                             <span class="float-end"><small class="text-success fw-bold">{{count( $course->users)}} Users</small></span>
                             <br>
                             <br>
-                            <a class="mt-5" href="/admin/tracks/{{$course->track->name}}"><h5>Track : {{$course->track->name}}<h5></a>    
+                            <a class="mt-5" href="/tracks/{{$course->track->name}}"><h5>Track : {{$course->track->name}}<h5></a>    
                         </div>     
                     </div>
                 </div>

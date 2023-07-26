@@ -40,10 +40,12 @@
                         <ul class="list-group list-group-horizontal row my-5 ">
                             @foreach ($famous_tracks as $track)
                             <li class="list-group-item  border col-sm-2 bg-secondary text-center  mb-1 mx-1">
-                                <a href="#" class="text-white">{{$track->name}}</a>
+                                <a href="/tracks/{{$track->name}}" class="text-white">{{$track->name}}</a>
                             </li>
                         @endforeach 
                         </ul>
+                        @auth
+                        @if($recommended_courses->count() > 0)
                         <h3>Recommended  Course</h3>
                         
                        
@@ -73,6 +75,8 @@
                                     @endforeach   
                                 </div>
                             </div>
+                            @endif
+                            @endauth
                         
                        
                     @endif
