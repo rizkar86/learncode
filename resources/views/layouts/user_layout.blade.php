@@ -32,8 +32,8 @@
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <form  class="d-flex search-form" method="get" action="/search">
+                    <input name="q" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 </form>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
               

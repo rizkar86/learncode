@@ -36,8 +36,10 @@ use App\Http\Controllers\Auth\ResetPassword;
 use App\Http\Controllers\Auth\ChangePassword;
 use App\Http\Controllers\CourseController as ControllersCourseController;
 use App\Http\Controllers\QuizController as ControllersQuizController;
+use App\Http\Controllers\SearchController;
 
 	Route::get('/', [HomeController::class, 'index'])->name('home');
+	Route::get('/search', [SearchController::class, 'index']);
 	Route::get('/courses/{slug}',[ControllersCourseController::class, 'index']);
 	Route::get('/courses/{slug}/quizzes/{name}',[ControllersQuizController::class, 'index']);
 	Route::post('/courses/{slug}/quizzes/{name}',[ControllersQuizController::class, 'submit']);
