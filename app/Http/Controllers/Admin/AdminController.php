@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-    public function __construct()
+    public function __construct()/*  */
     {
         $this->middleware(['owner','admin']);
     }

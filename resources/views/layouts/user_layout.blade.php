@@ -28,7 +28,7 @@
     <div class="container-fluid" >
         <nav class="navbar navbar-expand-lg  ">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">Learncode-laravel</a>
+              <a class="navbar-brand" href="/">Learncode-laravel</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -39,20 +39,19 @@
               
                 <ul class="navbar-nav ms-auto mb-2 me-5 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
                   </li>
                   @auth
-              
-               {{--      <li class="nav-item dropdown">
+                   <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Dropdown
+                          {{Auth::user()->username}}
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <li><a class="dropdown-item" href="#">Profile</a></li>
-                          <li><a class="dropdown-item" href="#">Courses</a></li>
+                        <ul class="dropdown-menu " style="background-color: #1c5996" aria-labelledby="navbarDropdown">
+                          <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                          <li><a class="dropdown-item" href="/mycourses">My Courses</a></li>
                           <li><hr class="dropdown-divider"></li>
                           <li class="dropdown-item">
                             <form role="form" method="post" action="{{ route('logout') }}" id="logout-form">
@@ -64,24 +63,15 @@
                                     <span class="d-sm-inline d-none">Log out</span>
                                 </a>
                             </form>
-                        </li>
+                          </li>
                         </ul>
-                      </li> --}}
-                      <li class="nav-item">
-                        <form role="form" method="post" action="{{ route('logout') }}" id="logout-form">
-                          @csrf
-                        
-                          <button type="submit" class="nav-link">Logout</button>
-                      </form>
-                      </li>
+                    </li> 
                   @endauth
                     @guest
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('login')}}">Login</a>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="{{route('register')}}">Register</a>
-                      </li>
+                   
                   
                     @endguest
                  

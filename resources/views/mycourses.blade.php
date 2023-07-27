@@ -24,9 +24,8 @@
             </div>
              @endif
             <div class="card mb-4">
-              
                 <div class="card-header pb-0">
-                    <h6>Track : {{$track->name}} has {{$courses->total()}} courses </h6>
+                    <h6>Your Courses count is {{$courses->total()}} </h6>
         
                    
                      
@@ -36,7 +35,11 @@
                         <div class="row">
                             @foreach ($courses as $course)
                             <div class="col-sm-2 mb-4">
-                                <div class="card" style="width: 18rem;">
+                               
+                                <div class="card" style="width: 18rem;"> 
+                                    <div class="card-header">
+                                        <a class="mt-5" href="/tracks/{{$course->track->name}}"><h5>Track <br> {{$course->track->name}}<h5></a>  
+                                      </div>
                                     @if ($course->photo)
                                     <img height="159" width="319" src="{{asset('img/'.$course->photo->filename.'')}}" class="card-img-top" alt="...">
                                     @else
@@ -47,11 +50,7 @@
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                                     <div class="d-flex justify-content-between ">
 
-                                    @if(auth()->user()->courses()->where('slug', $course->slug)->exists())
-                                    <p  class="btn btn-success btn-sm me-1" >Enrolled</p>
-                                    @endif
-
-                                    <a href="/courses/{{$course->slug}}" class="btn btn-info btn-sm me-1" >Show</a>
+                                        <a href="/courses/{{$course->slug}}" class="btn btn-info btn-sm me-1" >Show</a>
                            
                             
                                     </div>
@@ -62,7 +61,7 @@
                         </div>      
                         @else
                             <div>
-                                <td colspan="4" class="text-center">No Cources Found</td>
+                                <td colspan="4" class="text-center">No Tracks Found</td>
                             </div>
                         @endif
                        

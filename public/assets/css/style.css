@@ -9,6 +9,20 @@ a{
     background-color: #1c5996;
     color: #fff;
 }
+.navbar .nav-item:hover{
+    background-color: #f0f0f0f0;
+
+}
+.navbar .nav-item:hover a{
+ color: #000000;
+
+}
+.disabled{
+  pointer-events: none;
+  color: #6c757d;
+  text-decoration: none;
+}
+
 .navbar a{
     color: #fff;
     padding: 10px 50px;

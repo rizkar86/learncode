@@ -12,7 +12,7 @@ class TrackController extends Controller
     {
        $track = Track::where('name', $name)->first();
        // get paginate courses for this track
-         $courses = Track::where('name', $name)->first()->courses()->paginate(10);
+        $courses = Track::where('name', $name)->first()->courses()->paginate(10);
   
         return view('track_courses', compact('courses', 'track'));
     }

@@ -1,6 +1,18 @@
 @extends('layouts.user_layout')
 @section('content')
     @include('includes.home_haeder')
+    <div id="alert">
+        @include('components.alert')
+    </div>
+    @if ($errors->any())
+    <div class="alert alert-danger text-white">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
+        </ul>
+    </div>
+     @endif
     <div class="card mb-4">
       
         
@@ -24,25 +36,50 @@
                             <span class="float-end"><small class="text-success fw-bold">{{count( $course->users)}} Users</small></span>
                             <br>
                             <br>
-                            <a class="mt-5" href="/tracks/{{$course->track->name}}"><h5>Track : {{$course->track->name}}<h5></a>    
+                            <a class="mt-5" href="/tracks/{{$course->track->name}}"><h5>Track : {{$course->track->name}}<h5></a> 
+                                @if($enrolled == false)  
+                                    <div class="enrol-form float-end">
+                                        <form method="POST" action="/courses/{{$course->slug}}">
+                                            @csrf
+                                            <input type="submit" class="btn btn-success" value="Enroll Now">
+                                        </form>
+                
+                                    </div>
+                                @else
+                                <div class="p-3 mb-2 bg-success text-white">You have already enrolled </div>
+                                @endif
                         </div>     
                     </div>
+                 
                 </div>
                 <div class="row mt-5">
                     <div>
                         <h2>Course Videos</h2>
                     </div>
+                    @if($enrolled == true)  
+                        @foreach ($videos as $video)
+                        <!-- Button trigger modal -->
+                        <!-- style hover background color -->
+
+                        <a class="p-3 fw-bold video-btn border mb-2"  href="{{$video->link}}"  data-bs-toggle="modal" data-bs-target="#show-video" > 
+                            <i class="fab fa-youtube me-3 text-danger "></i>{{$video->title}}
+                        </a>
+                        @endforeach
+                  
+                    @else
                     @foreach ($videos as $video)
                     <!-- Button trigger modal -->
                     <!-- style hover background color -->
 
-                    <a class="p-3 fw-bold video-btn border mb-2" href="{{$video->link}}"  data-bs-toggle="modal" data-bs-target="#show-video" > 
-                        <i class="fab fa-youtube me-3 text-danger "></i>{{$video->title}}
-                    </a>
-                    
-                    <!-- Modal -->
-                   
+                        <a class="p-3 fw-bold video-btn border mb-2 disabled"  style="pointer-events: none;
+                        color: #6c757d;
+                        text-decoration: none;" href="{{$video->link}}"  data-bs-toggle="modal" data-bs-target="#show-video" > 
+                            <i class="fab fa-youtube me-3 text-danger "></i>{{$video->title}}
+                        </a>
                     @endforeach
+                    @endif
+                     <!-- Modal -->
+                   
                     <div class="modal fade" id="show-video" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-xl">
                             <div class="modal-content">
@@ -63,25 +100,33 @@
                     <div>
                         <h2>Course Qizzes</h2>
                     </div>
-                    @foreach ($quizzes as $quiz)
-                    <!-- Button trigger modal -->
-                    <!-- style hover background color -->
-                    @if(array_key_exists($quiz->id,$quizzesIds))
-                    <a class="p-3 fw-bold video-btn border mb-2" style="pointer-events: none;
-                    color: #6c757d;
-                    text-decoration: none;"  href="/courses/{{$course->slug}}/quizzes/{{$quiz->name}}"  target="_blank"> {{$quiz->name}} <span class="float-end"> Score : {{$quizzesIds[$quiz->id]}}</span>
-                    </a>
-                    @else
+                    @if($enrolled == true)
+                        @foreach ($quizzes as $quiz)
+                        <!-- Button trigger modal -->
+                        <!-- style hover background color -->
+                        @if(array_key_exists($quiz->id,$quizzesIds))
+                        <a class="p-3 fw-bold video-btn border mb-2 disapalled" style="pointer-events: none;
+                        color: #6c757d;
+                        text-decoration: none;"  href="/courses/{{$course->slug}}/quizzes/{{$quiz->name}}"  target="_blank"> {{$quiz->name}} <span class="float-end"> Score : {{$quizzesIds[$quiz->id]}}</span>
+                        </a>
+                        @else
 
 
 
-                    <a class="p-3 fw-bold video-btn border mb-2" href="/courses/{{$course->slug}}/quizzes/{{$quiz->name}}"  target="_blank"> {{$quiz->name}}
-                    </a>
-                    @endif
+                        <a class="p-3 fw-bold video-btn border mb-2" href="/courses/{{$course->slug}}/quizzes/{{$quiz->name}}"  target="_blank"> {{$quiz->name}}
+                        </a>
+                        @endif
                     
                     <!-- Modal -->
                    
-                    @endforeach
+                         @endforeach
+                    @else
+                        @foreach ($quizzes as $quiz)
+                            <a class="p-3 fw-bold video-btn border mb-2" style="pointer-events: none;color: #6c757d;text-decoration: none;" href="/courses/{{$course->slug}}/quizzes/{{$quiz->name}}"  target="_blank"> {{$quiz->name}}
+                            </a>
+                        @endforeach
+                    @endif
+
               
                 </div>
             </div>

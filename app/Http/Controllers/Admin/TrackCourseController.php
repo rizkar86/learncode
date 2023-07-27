@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class TrackCourseController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
        /**
      * Show the form for creating a new resource.
      */

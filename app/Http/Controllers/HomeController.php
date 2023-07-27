@@ -29,6 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+     
         $tracks  = Track::with('courses')->orderBy('id', 'desc')->get();
 
         // get famous tracks ids

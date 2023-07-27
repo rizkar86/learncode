@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('track_user', function (Blueprint $table) {
-            $table->id();
             $table->unsignedBigInteger('track_id');
             $table->foreign('track_id')->references('id')->on('tracks')->onDelete('cascade');
             $table->unsignedBigInteger('user_id');

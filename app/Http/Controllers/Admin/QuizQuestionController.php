@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class QuizQuestionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
    /**
      * Show the form for creating a new resource.
      */

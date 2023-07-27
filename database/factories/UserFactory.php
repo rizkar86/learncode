@@ -33,8 +33,8 @@ class UserFactory extends Factory
             'country' => fake()->country(),
             'postal' => fake()->postcode(),
             'about' => fake()->paragraph(),
-            'admin' => fake()->randomElement([ 0, 1]),
-            'score' => fake()->randomElement([ 100, 150, 200, 155, 190]),
+            'admin' => 0,
+            'score' => 0,
 
         ];
     }
