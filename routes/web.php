@@ -32,17 +32,26 @@ use App\Http\Controllers\Admin\QuizQuestionController;
 use App\Http\Controllers\Admin\TrackController;
 use App\Http\Controllers\Admin\TrackCourseController;
 use App\Http\Controllers\Admin\VideoController;
+use App\Http\Controllers\ALLCoursesController;
 use App\Http\Controllers\Auth\ResetPassword;
 use App\Http\Controllers\Auth\ChangePassword;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CourseController as ControllersCourseController;
 use App\Http\Controllers\MyCoursesController;
 use App\Http\Controllers\ProfileController as ControllersProfileController;
 use App\Http\Controllers\QuizController as ControllersQuizController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TrackController as ControllersTrackController;
+use Illuminate\Support\Facades\Mail;
+
+
+
 
 	Route::get('/', [HomeController::class, 'index'])->name('home');
 	Route::get('/search', [SearchController::class, 'index']);
+	Route::get('/contact', [ContactController::class, 'index']);
+	Route::post('/contact', [ContactController::class, 'contact']);
+	Route::get('/allcourses', [ALLCoursesController::class, 'index']);
 	Route::get('/mycourses', [MyCoursesController::class, 'index']);
 	Route::post('/courses/{slug}',[ControllersCourseController::class, 'enroll']);
 	Route::get('/tracks/{name}', [ControllersTrackController::class, 'index']);
@@ -59,7 +68,6 @@ use App\Http\Controllers\TrackController as ControllersTrackController;
 	Route::post('/reset-password', [ResetPassword::class, 'send'])->middleware('guest')->name('reset.perform');
 	Route::get('/change-password', [ChangePassword::class, 'show'])->middleware('guest')->name('change-password');
 	Route::post('/change-password', [ChangePassword::class, 'update'])->middleware('guest')->name('change.perform');
-	Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::group(['middleware' => 'auth'], function () {
 	
 	Route::resource('admin/tracks', TrackController::class);

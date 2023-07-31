@@ -1,29 +1,22 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Photo;
 use App\Models\User;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
-
 class ProfileController extends Controller
 {
     public function __contractor()
     {
         $this->middleware('auth');
     }
-
     public function index()
     {
         $user = auth()->user();
         $tracks = $user->tracks;
         return view('profile', compact('user', 'tracks'));
     }
-
-
    // function to update user profile by route
   /*   public function update(Request $request)
     {
@@ -92,7 +85,6 @@ class ProfileController extends Controller
             'postal' => ['max:100'],
             'about' => ['max:255']
         ]);
-
         $user->update([
             'username' => $request->get('username'),
             'firstname' => $request->get('firstname'),
@@ -104,10 +96,8 @@ class ProfileController extends Controller
             'postal' => $request->get('postal'),
             'about' => $request->get('about')
         ]);
- 
-        
-
-        if($file = $request->file('photo')){
+        if($file = $request->file('photo'))
+        {
             $extension = $file->getClientOriginalExtension();
             $fileName = $user->username.'_'.time().'.'. $extension;  
             if($file->move(public_path('img/users/'), $fileName))

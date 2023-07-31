@@ -91,5 +91,52 @@ $(document).ready(function(){
     });
   });
 
+  $('#contactForm').on('submit', function(e) {
+    console.log('hello');
+    e.preventDefault();
+    let form = $(this);
+    let url = form.attr('action');
+    let data = new FormData(this);
+    $.ajax({
+      url: url,
+      type: 'POST',
+      data: data,
+      dataType: 'JSON',
+      contentType: false,
+      processData: false,
+      success: function(data) {
+        console.log(data);
+        if (data.success) {
+       
+          $('.alert-success').removeClass('d-none');
+          $('.alert-success').html(data.success);
+          setTimeout(function() {
+            $('.alert-success').addClass('d-none');
+          }, 5000); 
+          // reload page
+        
+        } else {
+          $('.alert-danger').removeClass('d-none');
+          $('.alert-danger').html(data.error);
+          setTimeout(function() {
+            $('.alert-danger').addClass('d-none');
+          }, 5000);
+
+        }
+      },
+      error: function(data) {
+        var errors = data.responseJSON;
+        $('.alert-danger').removeClass('d-none');
+        $.each(errors.errors, function(key, value) {
+    
+          $('.alert-danger').append('<p>' + value + '</p>');
+        });
+        setTimeout(function() {
+          $('.alert-danger').addClass('d-none');
+        }, 5000);
+      }
+    });
+  });
+
 
 });

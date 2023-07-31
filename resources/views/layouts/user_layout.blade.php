@@ -38,11 +38,16 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
               
                 <ul class="navbar-nav ms-auto mb-2 me-5 mb-lg-0">
+                  @if(Auth::check() && $user->admin == 1)
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/admin/dashboard">Daschborad</a>
                   </li>
+                  @endif
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="/allcourses">All Courses</a>
+                  </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/contact">Countact</a>
                   </li>
                   @auth
                    <li class="nav-item dropdown">
@@ -52,13 +57,12 @@
                         <ul class="dropdown-menu " style="background-color: #1c5996" aria-labelledby="navbarDropdown">
                           <li><a class="dropdown-item" href="/profile">Profile</a></li>
                           <li><a class="dropdown-item" href="/mycourses">My Courses</a></li>
+                          <li><a class="dropdown-item" href="/contack">Contact</a></li>
                           <li><hr class="dropdown-divider"></li>
                           <li class="dropdown-item">
                             <form role="form" method="post" action="{{ route('logout') }}" id="logout-form">
                                 @csrf
-                                <a href="{{ route('logout') }}"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                    class="nav-link text-white font-weight-bold px-0">
+                                <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link text-white font-weight-bold px-0">
                                     <i class="fa fa-user me-sm-1"></i>
                                     <span class="d-sm-inline d-none">Log out</span>
                                 </a>
@@ -67,16 +71,12 @@
                         </ul>
                     </li> 
                   @endauth
-                    @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('login')}}">Login</a>
-                      </li>
-                   
-                  
-                    @endguest
-                 
+                  @guest
+                    <li class="nav-item">    
+                      <a class="nav-link" href="{{route('login')}}">Login</a>
+                    </li>
+                  @endguest
                 </ul>
-              
               </div>
             </div>
           </nav>

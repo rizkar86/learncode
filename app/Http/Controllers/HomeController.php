@@ -29,38 +29,25 @@ class HomeController extends Controller
      */
     public function index()
     {
-     
         $tracks  = Track::with('courses')->orderBy('id', 'desc')->get();
-
         // get famous tracks ids
         $famous_tracks_ids = Course::pluck('track_id')->countBy()->sort()->reverse()->keys()->take(5);
-
         // get famous tracks
         $famous_tracks = Track::withCount('courses')->whereIn('id', $famous_tracks_ids)->orderBy('courses_count','desc')->get();
         if(Auth::check()){
             $user_id = Auth::user()->id;
-            $user_courses = User::findOrFail($user_id)->courses;
+            $user = User::findOrFail($user_id);
+            
+            $user_courses = $user->courses;
                  // get recommended courses
         
-            $user_courses_ids = User::findOrFail($user_id)->courses()->pluck('course_id');
-       
-            $user_tracks_ids = User::findOrFail($user_id)->tracks()->pluck('track_id');
-      
+            $user_courses_ids = $user->courses()->pluck('course_id');
+            $user_tracks_ids = $user->tracks()->pluck('track_id');
             $recommended_courses = Course::whereIn('track_id', $user_tracks_ids)->whereNotIn('id', $user_courses_ids)->get();
-            return view('home', compact('user_courses', 'tracks', 'famous_tracks', 'recommended_courses'));
+            return view('home', compact('user','user_courses', 'tracks', 'famous_tracks', 'recommended_courses'));
         }
         else{
             return view('home', compact('tracks', 'famous_tracks'));
         }
-  
- 
-
-   
-
-      
-    
- 
-        
-
     }
 }
